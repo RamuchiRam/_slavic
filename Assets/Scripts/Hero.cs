@@ -5,27 +5,38 @@ using UnityEngine;
 
 public class Hero : MonoBehaviour
 {
-    // <«Õ¿◊≈Õ»ﬂ> Speed = 5, jumpForce = 15, Mass = 1, Gravity = 5 <«Õ¿◊≈Õ»ﬂ>
+    // <«Õ¿◊≈Õ»ﬂ> Speed = 3, jumpForce = 7, Mass = 1, Gravity = 3 <«Õ¿◊≈Õ»ﬂ>
     //  “Œ œŒÃ≈Õﬂ≈“  ¿—“–»–”ﬁ 
 
-    [SerializeField] private float speed = 5f;
-    [SerializeField] private float jumpForce = 15f;
+    [SerializeField] private float speed = 3f;
+    [SerializeField] private float jumpForce = 6f;
     
     private bool isGrounded = false;
     private Rigidbody2D rb;
     private SpriteRenderer sprite;
+    private Animator anim;
 
+    private States State
+    {
+        get { return (States)anim.GetInteger("state"); }
+        set { anim.SetInteger("state", (int)value); }
+    }
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
         sprite = GetComponentInChildren<SpriteRenderer>();
+        anim = GetComponent<Animator>();
+        rb.mass = 1f;
+        rb.gravityScale = 1f;
     }
 
     private void Update()
     {
+        if (isGrounded) State = States.idle;
+
         if (Input.GetButton("Horizontal"))
             Run();
-        if (isGrounded && Input.GetButtonDown("Jump"))//GetButton("Jump"))
+        if (isGrounded && Input.GetButtonDown("Jump"))
             Jump();
     }
     private void FixedUpdate()
@@ -34,6 +45,8 @@ public class Hero : MonoBehaviour
     }
     private void Run()
     {
+        if (isGrounded) State = States.walk;
+
         Vector2 dir = transform.right * Input.GetAxis("Horizontal");
 
         rb.position = Vector2.MoveTowards(rb.position, rb.position + dir, speed * Time.deltaTime); // ÂÒÎË ‰‚Ë„‡Ú¸ ˜ÂÂÁ rb, ÍÓÎÎËÁËË ÌÂ Ú‡Í ‚˚ÂÊË‚‡˛ÚÒˇ
@@ -49,5 +62,10 @@ public class Hero : MonoBehaviour
     {
         Collider2D[] collider = Physics2D.OverlapCircleAll(transform.position, 0.3f);
         isGrounded = collider.Length > 1;
+    }
+    public enum States
+    {
+        idle,
+        walk
     }
 }
