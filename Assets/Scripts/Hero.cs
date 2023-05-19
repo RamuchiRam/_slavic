@@ -8,7 +8,7 @@ public class Hero : MonoBehaviour
     // <«Õ¿◊≈Õ»ﬂ> Speed = 3, jumpForce = 7, Mass = 1, Gravity = 3 <«Õ¿◊≈Õ»ﬂ>
     //  “Œ œŒÃ≈Õﬂ≈“  ¿—“–»–”ﬁ 
 
-    [SerializeField] private float speed = 3f;
+    [SerializeField] private float speed = 4f;
     [SerializeField] private float jumpForce = 6f;
     
     private bool isGrounded = false;
