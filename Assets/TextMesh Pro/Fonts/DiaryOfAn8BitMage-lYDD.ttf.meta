@@ -1,0 +1,22 @@
+fileFormatVersion: 2
+guid: 9f069f6d438fb994f93b3bd2eb89574e
+TrueTypeFontImporter:
+  externalObjects: {}
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontNames:
+  - Diary of an 8-bit mage
+  fallbackFontReferences:
+  - {fileID: 12800000, guid: 80429a8c8a2646946b0398d675b79d81, type: 3}
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  useLegacyBoundsCalculation: 0
+  shouldRoundAdvanceValue: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
